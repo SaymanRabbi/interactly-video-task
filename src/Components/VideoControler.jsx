@@ -1,10 +1,15 @@
 import React from "react";
-
-const VideoControler = () => {
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+const VideoControler = ({ handelSpeed, speed, currentTime, duration }) => {
   return (
     <div className="absolute top-10 right-10  z-10 flex gap-3">
-      <span>Current Time</span>
-      <span>Duration</span>
+      <span className=" text-white font-bold">
+        {Math.floor(currentTime / 60)}:{Math.floor(currentTime % 60)}
+      </span>
+      <span className=" text-white font-bold">/</span>
+      <span className="text-white font-bold">
+        {Math.floor(duration / 60)}:{Math.floor(duration % 60)}
+      </span>
       <button
         className=" text-white font-bol w-10 h-6 px-2 flex justify-center items-center font-bold"
         style={{
@@ -16,6 +21,7 @@ const VideoControler = () => {
         CC
       </button>
       <button
+        onClick={handelSpeed}
         className=" text-white font-bol w-10 h-6 px-2 flex justify-center items-center font-bold"
         style={{
           border: "2px solid white",
@@ -23,7 +29,7 @@ const VideoControler = () => {
           outline: "none",
         }}
       >
-        CC
+        {speed}X
       </button>
       <button
         className=" text-white font-bol w-10 h-6 px-2 flex justify-center items-center font-bold"
@@ -33,7 +39,7 @@ const VideoControler = () => {
           outline: "none",
         }}
       >
-        CC
+        <FullscreenIcon />
       </button>
     </div>
   );
