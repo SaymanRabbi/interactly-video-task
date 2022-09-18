@@ -4,7 +4,7 @@ import Video from "../Components/Video";
 
 const Home = () => {
   return (
-    <section className="sm:flex justify-between overflow-y-hidden">
+    <section className="lg:grid lg:grid-cols-2 overflow-y-hidden max-h-screen">
       <Video />
       <Content />
     </section>
