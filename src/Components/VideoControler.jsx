@@ -1,6 +1,13 @@
 import React from "react";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
-const VideoControler = ({ handelSpeed, speed, currentTime, duration }) => {
+const VideoControler = ({
+  handelSpeed,
+  speed,
+  currentTime,
+  duration,
+  setFullScreen,
+  fullScreen,
+}) => {
   return (
     <div className="absolute top-10 right-10  z-10 flex gap-3">
       <span className=" text-white font-bold">
@@ -39,7 +46,7 @@ const VideoControler = ({ handelSpeed, speed, currentTime, duration }) => {
           outline: "none",
         }}
       >
-        <FullscreenIcon />
+        <FullscreenIcon onClick={() => setFullScreen(!fullScreen)} />
       </button>
     </div>
   );

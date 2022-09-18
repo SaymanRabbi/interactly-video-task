@@ -4,7 +4,7 @@ import PlayBtn from "./PlayBtn";
 import ProgressBar from "./ProgressBar";
 import VideoControler from "./VideoControler";
 
-const Video = () => {
+const Video = ({ setFullScreen, fullScreen }) => {
   const [videoWidth, setVideoWith] = useState(0);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [showPlayBtn, setShowPlayBtn] = useState(true);
@@ -71,6 +71,8 @@ const Video = () => {
         speed={speed}
         currentTime={currentTime}
         duration={duration}
+        setFullScreen={setFullScreen}
+        fullScreen={fullScreen}
       />
       {showPlayBtn && <PlayBtn handleToggle={handleToggle} />}
       <Logo />
