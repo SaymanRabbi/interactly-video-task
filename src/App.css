@@ -11,3 +11,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.logo-bg {
+  background-color: rgba(125, 0, 254, 0.592);
+}

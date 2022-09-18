@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Logo from "./Logo";
 import PlayBtn from "./PlayBtn";
 import ProgressBar from "./ProgressBar";
 import VideoControler from "./VideoControler";
@@ -72,6 +73,7 @@ const Video = () => {
         duration={duration}
       />
       {showPlayBtn && <PlayBtn handleToggle={handleToggle} />}
+      <Logo />
       {/* =========video Controler============ */}
     </div>
   );
