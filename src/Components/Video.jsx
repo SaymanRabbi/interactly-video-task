@@ -4,22 +4,42 @@ import ProgressBar from "./ProgressBar";
 import VideoControler from "./VideoControler";
 
 const Video = () => {
-  const [videoWidth, setVideoWith] = useState(100);
+  const [videoWidth, setVideoWith] = useState(0);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [showPlayBtn, setShowPlayBtn] = useState(true);
-  const videoplay = useRef();
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const videoplay = useRef(null);
+  //   Get Progress bar Width
+  const ref = useRef(null);
   useEffect(() => {
     videoPlaying ? setShowPlayBtn(false) : setShowPlayBtn(true);
   }, [videoPlaying]);
-
+  //-------------------Controls Videos----------------
   const handleToggle = () => {
     setVideoPlaying(!videoPlaying);
+    setInterval(() => {
+      setCurrentTime(videoplay.current.currentTime);
+      setDuration(videoplay.current.duration);
+    }, 1200);
     if (videoPlaying) {
       videoplay.current.pause();
     } else {
       videoplay.current.play();
     }
   };
+  //-------------------Controls Videos----------------
+  //   --------------------Get CurrentTime And Duration-------------------
+  useEffect(() => {
+    setVideoWith((currentTime / duration) * 100);
+    if ((currentTime / duration) * 100 === 100) {
+      setVideoPlaying(false);
+      videoplay.current.currentTime = 0;
+      videoplay.current.pause();
+    }
+  }, [currentTime, duration]);
+  //   --------------------Get CurrentTime And Duration-------------------
+
   return (
     <div className="h-screen relative" onClick={handleToggle}>
       {/* --------------Video------------------*/}
@@ -31,8 +51,8 @@ const Video = () => {
       </video>
       {/* --------------Video------------------*/}
       {/* =========video Controler============ */}
-      <ProgressBar videoWidth={videoWidth} />
-      {/* <VideoControler /> */}
+      <ProgressBar videoWidth={videoWidth} ref={ref} />
+      <VideoControler />
       {showPlayBtn && <PlayBtn />}
       {/* =========video Controler============ */}
     </div>
